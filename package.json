@@ -1,0 +1,74 @@
+{
+  "name": "@known-as-bmf/react-when-hooks",
+  "version": "0.1.0",
+  "author": "Julien Avert",
+  "description": "Reack hook toolkit to trigger useEffect, useLayoutEffect, useCallback and useMemo when a condition on dependencies is met.",
+  "keywords": [
+    "javascript",
+    "react",
+    "react hook",
+    "useEffect",
+    "useLayoutEffect",
+    "useCallback",
+    "useMemo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/known-as-bmf/react-when-hooks.git"
+  },
+  "homepage": "https://github.com/known-as-bmf/react-when-hooks",
+  "bugs": "https://github.com/known-as-bmf/react-when-hooks/issues",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/react-when-hooks.esm.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "test:watch": "tsdx test --watch",
+    "test:coverage": "tsdx test --coverage",
+    "lint": "tsdx lint"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "devDependencies": {
+    "@testing-library/react": "9.4.1",
+    "@testing-library/react-hooks": "3.2.1",
+    "@types/jest": "25.1.3",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.5",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-react-hooks": "2.5.0",
+    "husky": "4.2.3",
+    "prettier": "1.19.1",
+    "pretty-quick": "2.0.1",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-test-renderer": "16.13.0",
+    "tsdx": "0.12.3",
+    "tslib": "1.11.1",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint && pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
