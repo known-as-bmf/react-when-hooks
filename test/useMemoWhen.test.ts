@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import { useMemoWhen, useMemoWhenDefined } from '../src';
 
-const matchTrue = (arg: boolean): boolean => arg === true;
+const matchTrue = (arg: unknown): boolean => arg === true;
 
 describe('useMemoWhen', () => {
   it('renders without crashing', () => {
@@ -10,7 +10,9 @@ describe('useMemoWhen', () => {
     const hookResult = 'test';
     const factory = jest.fn().mockReturnValue(hookResult);
 
-    const { result } = renderHook(() => useMemoWhen(factory, matchTrue, [dep]));
+    const { result } = renderHook(() =>
+      useMemoWhen<string>(factory, matchTrue, [dep])
+    );
 
     expect(result).toBeDefined();
   });
@@ -21,7 +23,7 @@ describe('useMemoWhen', () => {
     const factory = jest.fn().mockReturnValue(hookResult);
 
     const { result, rerender } = renderHook(() =>
-      useMemoWhen(factory, matchTrue, [dep])
+      useMemoWhen<string>(factory, matchTrue, [dep])
     );
 
     expect(factory).not.toHaveBeenCalled();
@@ -46,20 +48,22 @@ describe('useMemoWhenDefined', () => {
     const hookResult = 'test';
     const factory = jest.fn().mockReturnValue(hookResult);
 
-    const { result } = renderHook(() => useMemoWhenDefined(factory, [dep]));
+    const { result } = renderHook(() =>
+      useMemoWhenDefined<string>(factory, [dep])
+    );
 
     expect(result).toBeDefined();
   });
 
   it.each([false, 0, '', [], {}, NaN])(
     'call the factory function only when all the deps satisfy the condition',
-    value => {
-      let dep: any = undefined;
+    (value) => {
+      let dep: unknown = undefined;
       const hookResult = 'test';
       const factory = jest.fn().mockReturnValue(hookResult);
 
       const { result, rerender } = renderHook(() =>
-        useMemoWhenDefined(factory, [dep])
+        useMemoWhenDefined<string>(factory, [dep])
       );
 
       expect(factory).not.toHaveBeenCalled();

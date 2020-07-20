@@ -2,7 +2,7 @@
  * A predicate function that dependencies must match.
  */
 export type MatchFunction = (
-  value: any,
+  value: unknown,
   index: number,
-  array: readonly any[]
+  array: readonly unknown[]
 ) => boolean;

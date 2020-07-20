@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import { useCallbackWhen, useCallbackWhenDefined } from '../src';
 
-const matchTrue = (arg: boolean): boolean => arg === true;
+const matchTrue = (arg: unknown): boolean => arg === true;
 
 describe('useCallbackWhen', () => {
   it('renders without crashing', () => {
@@ -51,8 +51,8 @@ describe('useCallbackWhenDefined', () => {
 
   it.each([false, 0, '', [], {}, NaN])(
     'return the function only when all the deps satisfy the condition',
-    value => {
-      let dep: any = undefined;
+    (value) => {
+      let dep: unknown = undefined;
       const hookResult = jest.fn();
 
       const { result, rerender } = renderHook(() =>

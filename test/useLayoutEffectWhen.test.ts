@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import { useLayoutEffectWhen, useLayoutEffectWhenDefined } from '../src';
 
-const matchTrue = (arg: boolean): boolean => arg === true;
+const matchTrue = (arg: unknown): boolean => arg === true;
 
 describe('useLayoutEffectWhen', () => {
   it('renders without crashing', () => {
@@ -92,8 +92,8 @@ describe('useLayoutEffectWhenDefined', () => {
 
   it.each([false, 0, '', [], {}, NaN])(
     'call the effect function only when all the deps satisfy the condition',
-    value => {
-      let dep: any = undefined;
+    (value) => {
+      let dep: unknown = undefined;
 
       const effect = jest.fn();
 
